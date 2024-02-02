@@ -81,10 +81,10 @@ output_path_base = os.path.join(args.output_folder,os.path.basename(args.input_p
 
 output_path_lang = output_path_base+'.lang'
 print('saving',output_path_lang)
-with open(output_path_lang,'w') as f:
-    f.write(json.dumps(counter_lang))
+with open(output_path_lang,'w') as f1:
+    f1.write(json.dumps(counter_lang))
 
 output_path_country = output_path_base+'.country'
 print('saving',output_path_country)
-with open(output_path_country,'w') as f:
-    f.write(json.dumps(counter_country))
+with open(output_path_country,'w') as f2:
+    f2.write(json.dumps(counter_country))
