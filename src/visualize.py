@@ -40,9 +40,9 @@ if args.percent:
         counts[args.key][k] /= counts['_all'][k]
 
 # print the count values
-items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
-for k,v in items:
-    print(k,':',v)
+#items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
+#for k,v in items:
+#    print(k,':',v)
 items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=False)
 
 # top ten items
@@ -53,7 +53,7 @@ keys = [i for i in range(len(top_items))]
 values = [v for k,v in top_items]
 
 # Plot the bar graph
-plt.barh(keys, values)
+plt.bar(keys, values)
 xLabel = "Language"
 if args.input_path == "reduced.country":
     xLabel = "Country"
@@ -62,7 +62,7 @@ plt.ylabel("Number of Tweets", fontproperties=fp)
 lang = "English"
 if args.key != "#coronavirus":
     lang = "Korean"
-plt.title(f'Top 10 {args.key} tweets by' + xLabel, fontproperties=fp)
+plt.title(f'Top 10 countires with' + args.key + 'tweets by' + xLabel, fontproperties=fp)
 plt.tight_layout()
 
 
