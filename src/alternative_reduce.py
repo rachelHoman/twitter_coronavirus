@@ -10,8 +10,10 @@ args = parser.parse_args()
 # imports
 import os
 import json
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 # load each of the input paths
 total_hashtags = defaultdict(lambda: Counter())
@@ -37,7 +39,7 @@ for hashtag in args.hashtags:
 plt.xlabel('Day of the Year')
 plt.ylabel('Number of Tweets')
 plt.title('Number of Tweets with Hashtags Over the Year')
-plt.legend()
+#plt.legend()
 plt.grid(True)
 
 # Save the plot to the specified output path
