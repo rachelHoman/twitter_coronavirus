@@ -15,7 +15,7 @@ import argparse
 import matplotlib
 # To handle the Korean font
 import matplotlib.font_manager
-path = '/home/rmha2020/.fonts/NotoSerifKR-Regular.otf'
+path = '/home/rmha2020/twitter_coronavirus/Noto_Serif_KR/NotoSerifKR-Regular.otf'
 fp = matplotlib.font_manager.FontProperties(fname=path)
 
 # Use Agg backend for non-interactive mode
