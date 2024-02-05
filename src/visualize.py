@@ -40,34 +40,50 @@ if args.percent:
         counts[args.key][k] /= counts['_all'][k]
 
 # print the count values
-#items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
+items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
 #for k,v in items:
 #    print(k,':',v)
-items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=False)
 
 # top ten items
-top_items = items[-10:]
+top_items = items[:10]
 
 # Extract the keys and values for plotting
-keys = [i for i in range(len(top_items))]
-values = [v for k,v in top_items]
+keys = [item[0] for item in top_items]
+values = [item[1] for item in top_items]
+keys = keys[::-1]
+values = values[::-1]
 
 # Plot the bar graph
-plt.bar(keys, values)
+plt.bar(range(len(keys)), values)
+plt.xticks(range(len(keys)), keys)
 xLabel = "Language"
 if args.input_path == "reduced.country":
-    xLabel = "Country"
+    xLabel = 'Country'
+    plt.title(f'Number of Tweets by Country')
+else:
+    xLabel = 'Language'
+    plt.title(f'Number of Tweets by Language')
 plt.xlabel(xLabel, fontproperties=fp)
 plt.ylabel("Number of Tweets", fontproperties=fp)
 lang = "English"
 if args.key != "#coronavirus":
     lang = "Korean"
-plt.title(f'Top 10 countires with' + args.key + 'tweets by' + xLabel, fontproperties=fp)
-plt.tight_layout()
+plt.title(f'Top 10 countires with ' + args.key + ' tweets by ' + xLabel, fontproperties=fp)
+# plt.tight_layout()
 
 
 # Determine whether it's lang or country data
 data_type = "lang" if "lang" in args.input_path else "country"
 # Save the png
-output_path = os.path.splitext(args.input_path)[0] + f'_{args.key}_{data_type}_bar_graph.png'
+if (data_type == "lang" and lang == "English"):
+    output_path = os.path.splitext(args.input_path)[0] + f'English_lang_graph.png'
+elif (data_type == "lang" and lang == "Korean"):
+    output_path = os.path.splitext(args.input_path)[0] + f'Korean_lang_graph.png'
+elif (data_type == "country" and lang == "English"):
+    output_path = os.path.splitext(args.input_path)[0] + f'English_country_graph.png'
+else:
+    output_path = os.path.splitext(args.input_path)[0] + f'Korean_country_graph.png'
+
 plt.savefig(output_path)
+
+
