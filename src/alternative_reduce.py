@@ -21,10 +21,9 @@ from collections import Counter, defaultdict
 from datetime import datetime
 
 # initialize
-# total_hashtags = defaultdict(lambda: Counter())
 file_path = "/home/rmha2020/twitter_coronavirus/outputs/geoTwitter20*.lang"
 files = glob.glob(file_path)
-total = defaultdict(int)
+all_info = defaultdict(int)
 
 # go through files
 for file in files:
@@ -34,13 +33,13 @@ for file in files:
         for hashtag in args.hashtags:
             if hashtag in tmp:
                 for language in tmp[hashtag]:
-                    if (date, hashtag) not in total:
-                        total[(date, hashtag)] = 0
-                total[(date, hashtag)] += np.sum(list(tmp[hashtag].values()))
+                    if (date, hashtag) not in all_info:
+                        all_info[(date, hashtag)] = 0
+                all_info[(date, hashtag)] += np.sum(list(tmp[hashtag].values()))
 
 # plot the data
-total = dict(sorted(total.items(), key=lambda key: key[0]))
-fig, ax = plt.subplots()
+total = dict(sorted(all_info.items(), key=lambda key: key[0]))
+fig, x_axis = plt.subplots()
 
 for hashtag in args.hashtags:
     dates = []
@@ -53,10 +52,10 @@ for hashtag in args.hashtags:
 
     if dates:  # Check if the list is not empty
         dates_list = [datetime.strptime(date_str, "%y-%m-%d") for date_str in dates]
-        ax.plot(dates_list, counts, label=hashtag)
+        x_axis.plot(dates_list, counts, label=hashtag)
 
-ax.xaxis.set_major_locator(plt_dates.MonthLocator(interval=2))
-ax.xaxis.set_major_formatter(plt_dates.DateFormatter("%y-%m-%d"))
+x_axis.xaxis.set_major_locator(plt_dates.MonthLocator(interval=2))
+x_axis.xaxis.set_major_formatter(plt_dates.DateFormatter("%m-%d-%y"))
 
 # add labels
 plt.xlabel('Date')
@@ -64,12 +63,7 @@ plt.ylabel('Number of Tweets')
 plt.title('Number of Daily Tweets By Hashtags')
 plt.legend()
 
-#finalHashes = ""
-#for hsh in args.hashtags:
-#    finalHashes += hsh
-
-
 # Save the plot to the specified output path
-output_filename = f'{hashtag}_alt_reduce3.png'
+output_filename = f'{hashtag}_alt_reduce.png'
 output_p = os.path.join(args.output_path, output_filename)
 plt.savefig(output_p)
