@@ -12,7 +12,7 @@ I followed these steps in order to visualize the coronavirus data on Twitter:
 
 3. Reduce. The files outputed from the `run_maps.sh` file are stored in the `outputs/` folder. Using the `reduce.py` file found in the `src/` folder, `reduce.py` combines all the `.lang` files into a single file and all of the `.country` files into a different file.
 
-4. Visualize. The `visualize.py` file, found in the `src/` folder, generates a bar graph of the results and stores the bar graph as a `.png` file. The final results are sorted from low to high, and only include the top 10 keys. I created 4 different pngs: two with the `--key` set to `#coronavirus` (one based on the languages and the other based on the countries) and two with the `--key` set to `#코로나바이러스` (again a language and then a country png).
+4. Visualize. The `visualize.py` file, found in the `src/` folder, generates a bar graph of the results and stores the bar graph as a `.png` file. The final results are sorted from low to high, and only include the top 10 keys. I created 4 different pngs that are found in teh `plots/` folder: two with the `--key` set to `#coronavirus` (one based on the languages and the other based on the countries) and two with the `--key` set to `#코로나바이러스` (again a language and then a country png).
 
 <img src=plots/reducedEnglish_country_graph.png />
 
@@ -22,15 +22,15 @@ I followed these steps in order to visualize the coronavirus data on Twitter:
 
 <img src=plots/reducedKorean_lang_graph.png />
 
-5. Alternative reduce. Lastly, I created a new reduce file that take as input on the command line a list of hashtags, and output a line plot where there is one line per input hashtag, the x-axis is the day of the year, and the y-axis is the number of tweets that use that hashtag during the year.
+5. Alternative reduce. Lastly, I created a new reduce file that take as input on the command line a list of hashtags, and output a line plot where there is one line per input hashtag, the x-axis is the day of the year, and the y-axis is the number of tweets that use that hashtag during the year. Found in the `alt_reduce_plots/` folder, here are four example plots that show the trend in hashtag during 2020 that relate to the Covid-19 pandemic:
 
-<img src=alt_reduce_plots/#corona_alt_reduce.png />
+<img src=alt_reduce_plots/corona_alt_reduce.png />
 
-<img src=alt_reduce_plots/#doctor_alt_reduce.png />
+<img src=alt_reduce_plots/doctor_alt_reduce.png />
 
-<img src=alt_reduce_plots/#sick_alt_reduce.png/>
+<img src=alt_reduce_plots/sick_alt_reduce.png/>
 
-<img src=alt_reduce_plots/#virus_alt_reduce.png />
+<img src=alt_reduce_plots/virus_alt_reduce.png />
 
 
 
